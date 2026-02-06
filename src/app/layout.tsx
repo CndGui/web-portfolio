@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Web Portfolio",
-};
 
 export default function RootLayout({
   children,
@@ -30,4 +25,42 @@ export default function RootLayout({
       </body>
     </html>
   );
+}
+
+export async function generateMetadata() {
+    const title = `Guilherme Rodrigues - Web Developer`;
+    const description = "Full Stack Developer specialized in React and TypeScript on the front-end, and NestJS/Spring Boot on the back-end. Focused on building modern, scalable applications with clean code."
+    const websiteURL = "https://www.guilhermerodrigues.site/"
+
+    return {
+        title: title,
+        description: description,
+        authors: [
+            {
+                name: "Guilherme Rodrigues de Morais",
+                url: websiteURL
+            }
+        ],
+        metadataBase: new URL(websiteURL),
+        creator: "Guilherme Rodrigues de Morais",
+        publisher: "Guilherme Rodrigues de Morais",
+        alternates: {
+            canonical: websiteURL,
+        },
+        twitter: {
+            title: title,
+            description: description,
+            siteId: "2824372050",
+            creator: "@CndGui",
+            creatorId: "2824372050",
+            card: "summary_large_image",
+          },
+          openGraph: {
+            type: "website",
+            title: title,
+            description: description,
+            // url: "/opengraph-image",
+          },
+          applicationName: title,
+    }
 }
