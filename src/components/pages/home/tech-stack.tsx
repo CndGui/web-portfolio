@@ -1,0 +1,161 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+
+interface TechStackItem {
+  name: string;
+  url: string;
+  icon: string;
+}
+
+interface TechStackCategory {
+  category: string;
+  items: TechStackItem[];
+}
+
+export function HomeTechStack() {
+  const [selectedCategory, setSelectedCategory] = useState(techStackData[0].category);
+
+  const currentItems = techStackData.find((s) => s.category === selectedCategory)?.items ?? [];
+
+  return (
+    <div className="space-y-4">
+      <p className="font-semibold text-lg">Tech Stack</p>
+
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4">
+          {techStackData.map((stack) => (
+            <button
+              type="button"
+              key={stack.category}
+              onClick={() => setSelectedCategory(stack.category)}
+              className="transform cursor-pointer border-background border-b-2 px-1 text-text/50 transition-transform hover:scale-105 data-[selected=true]:border-text data-[selected=true]:text-text"
+              data-selected={selectedCategory === stack.category}
+            >
+              {stack.category}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 max-[410px]:grid-cols-1">
+          {currentItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex transform items-center gap-3 rounded-md border border-text/20 px-4 py-2 transition-all duration-300 hover:scale-105 hover:bg-text hover:text-background hover:shadow-md"
+            >
+              <Image unoptimized src={item.icon} alt={item.name} width={24} height={24} />
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const techStackData: TechStackCategory[] = [
+  {
+    category: "Front-End",
+    items: [
+      {
+        name: "TypeScript",
+        url: "https://www.typescriptlang.org/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+      {
+        name: "React",
+        url: "https://react.dev/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "React Native",
+        url: "https://reactnative.dev/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Next.js",
+        url: "https://nextjs.org/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      },
+      {
+        name: "Svelte",
+        url: "https://svelte.dev/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg",
+      },
+      {
+        name: "TailwindCSS",
+        url: "https://tailwindcss.com/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+    ],
+  },
+  {
+    category: "Back-End",
+    items: [
+      {
+        name: "NestJS",
+        url: "https://nestjs.com/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg",
+      },
+      {
+        name: "Spring Boot",
+        url: "https://spring.io/projects/spring-boot",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+      },
+      {
+        name: "Java",
+        url: "https://www.java.com/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      },
+    ],
+  },
+  {
+    category: "Database",
+    items: [
+      {
+        name: "PostgreSQL",
+        url: "https://www.postgresql.org/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      },
+      {
+        name: "MySQL",
+        url: "https://www.mysql.com/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
+      {
+        name: "MongoDB",
+        url: "https://www.mongodb.com/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      },
+      {
+        name: "Prisma",
+        url: "https://www.prisma.io/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg",
+      },
+      {
+        name: "Drizzle",
+        url: "https://orm.drizzle.team/",
+        icon: "https://images.opencollective.com/drizzle-orm/9405571/logo/256.png",
+      },
+    ],
+  },
+  {
+    category: "Tools",
+    items: [
+      {
+        name: "Git",
+        url: "https://git-scm.com/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        name: "Recoil",
+        url: "https://recoiljs.org/",
+        icon: "https://recoiljs.org/img/logo.svg",
+      },
+    ],
+  },
+];

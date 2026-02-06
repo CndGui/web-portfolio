@@ -4,6 +4,8 @@ export default function PagesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="py-8">{children}</div>
+    <div className="mx-auto max-w-3xl px-6 py-16">
+      {children}
+    </div>
   );
 }
