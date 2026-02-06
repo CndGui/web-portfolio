@@ -4,7 +4,7 @@ import { HomeTechStack } from "@/components/pages/home/tech-stack";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-12">
       <HomeDescription />
       <HomeExperiences />
       <HomeTechStack />

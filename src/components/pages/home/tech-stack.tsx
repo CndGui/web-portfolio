@@ -20,7 +20,7 @@ export function HomeTechStack() {
   const currentItems = techStackData.find((s) => s.category === selectedCategory)?.items ?? [];
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col gap-4">
       <p className="font-semibold text-lg">Tech Stack</p>
 
       <div className="flex flex-col gap-4">
